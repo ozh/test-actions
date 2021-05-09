@@ -17,15 +17,16 @@ jobs:
         run: |
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
-      - name: s3cr3t
+      - name: Use s3cr3t
         run: echo "${{ secrets.API_KEY }}"
-      # Runs a set of commands using the runners shell
+      - name: Non existent secret
+        run: echo "${{ secrets.API_KEY_GKSDLGKDG }}"
       - name: Run a multi-line script
         run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+          echo "first line"
+          echo "second line"
       - name: Run a long one-liner script
         run: >
           ls
-          -l
+          -l /
           
