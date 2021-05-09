@@ -1,0 +1,17 @@
+name: Matrix
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        ozh: [1, 2, 3, "hello", "world"]
+
+    steps:
+    - name: One step
+      run: echo "🎉 ${{ matrix.ozh }}"
