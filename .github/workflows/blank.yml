@@ -30,4 +30,5 @@ jobs:
 
       # Run binary
       - name: Run binary
-        run: ./.github/some_bin
+        run: bash ./.github/some_bin
+
