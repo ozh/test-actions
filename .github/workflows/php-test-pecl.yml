@@ -1,0 +1,27 @@
+name: Test PECL
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: PHP
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Use PHP 8
+      uses: shivammathur/setup-php@2.18.1
+      with:
+        php-version: '8.0'
+        extensions: mbstring, curl, zip, dom, simplexml, intl, pdo_mysql, pecl_http-4.2.0
+        tools: pecl
+      env:
+        HTTP_CONFIGURE_PREFIX_OPTS: CFLAGS=-Wno-implicit-function-declaration
+        HTTP_CONFIGURE_OPTS: --with-http
+
+    - name: Test
+      run: |
+        php --version
+        php -r 'var_dump(function_exists("http_build_url"));';
+        
+
