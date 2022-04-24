@@ -1,0 +1,34 @@
+name: PR Push
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test-stuff:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        test: [1, 2]
+
+    steps:
+      - uses: actions/checkout@v3
+        name: Checkout
+
+      - name: Debug
+        run: |
+          echo matrix.test: ${{ matrix.test }}
+          echo github.head_ref: ${{ github.head_ref }}
+          echo github.ref: ${{ github.ref }}
+          echo github.ref_name: ${{ github.ref_name }}
+          echo github.ref_type: ${{ github.ref_type }}
+          echo github.workflow: ${{ github.workflow }}
+          echo github.job: ${{ github.job }}
+          echo github.run_id: {{ github.run_id }}
+          echo github.event.pull_request.number: ${{ github.event.pull_request.number }}
+          echo github.event.pull_request: ${{ github.event.pull_request }}
+          echo github.event: ${{ github.event }}
+          echo github.event_name: ${{ github.event_name }}
+          echo github.workspace: ${{ github.workspace }}
+          
