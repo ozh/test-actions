@@ -3,6 +3,7 @@ name: PR Push
 on:
   push:
   pull_request:
+    types: [reopened, edited, synchronize]
   workflow_dispatch:
 
 jobs:
