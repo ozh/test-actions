@@ -3,14 +3,12 @@ name: PR Push
 on:
   push:
   pull_request:
+    types: [reopened, synchronize]
   workflow_dispatch:
 
 jobs:
   test-stuff:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        test: [1, 2]
 
     steps:
       - uses: actions/checkout@v3
@@ -18,6 +16,10 @@ jobs:
 
       - name: Debug
         run: |
+          HEAD_REF=${{ github.head_ref }}
+          REF_NAME=${{ github.ref_name }}
+          echo ${HEAD_REF:-$REF_NAME}
+          echo -----------
           echo matrix.test: ${{ matrix.test }}
           echo github.head_ref: ${{ github.head_ref }}
           echo github.ref: ${{ github.ref }}
@@ -25,7 +27,7 @@ jobs:
           echo github.ref_type: ${{ github.ref_type }}
           echo github.workflow: ${{ github.workflow }}
           echo github.job: ${{ github.job }}
-          echo github.run_id: {{ github.run_id }}
+          echo github.run_id: ${{ github.run_id }}
           echo github.event.pull_request.number: ${{ github.event.pull_request.number }}
           echo github.event.pull_request: ${{ github.event.pull_request }}
           echo github.event: ${{ github.event }}
