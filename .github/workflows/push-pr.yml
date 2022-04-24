@@ -2,8 +2,6 @@ name: PR Push
 
 on:
   push:
-  pull_request:
-    types: [synchronize]
   workflow_dispatch:
 
 jobs:
