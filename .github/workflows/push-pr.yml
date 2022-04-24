@@ -8,9 +8,6 @@ on:
 jobs:
   test-stuff:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        test: [1, 2]
 
     steps:
       - uses: actions/checkout@v3
@@ -25,7 +22,7 @@ jobs:
           echo github.ref_type: ${{ github.ref_type }}
           echo github.workflow: ${{ github.workflow }}
           echo github.job: ${{ github.job }}
-          echo github.run_id: {{ github.run_id }}
+          echo github.run_id: ${{ github.run_id }}
           echo github.event.pull_request.number: ${{ github.event.pull_request.number }}
           echo github.event.pull_request: ${{ github.event.pull_request }}
           echo github.event: ${{ github.event }}
